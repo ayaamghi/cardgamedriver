@@ -2,37 +2,44 @@ package edu.guilford;
 
 import java.util.ArrayList;
 
+/**
+ * Hand class that represents a hand of cards, with methods to add, remove, score Blackjack hands
+ */
 public class Hand {
     private ArrayList<Card> hand;
 
     
 
-    public Hand() {
+    public Hand() { //specification met 
         hand = new ArrayList<Card>();
     }
 
-    public void addCard(Card card) {
+    public void addCard(Card card) { //specification met
         hand.add(card);
     }
 
-    public void removeCard(Card card) {
+    public void removeCard(Card card) { //specification met
         hand.remove(card);
     }
 
-    public void reset() {
+    public void reset() { //specification met
         hand.clear();
     }
 
-    public int size() {
+    public int size() { //not in specifications, but is useful additional method 
         return hand.size();
     }
 
-    public Card getCard(int index) {
+    public Card getCard(int index) { //specification met
         return hand.get(index);
     }
 
     // Calculate the value of the hand
-    public int getTotalValue() {
+    /**
+     * Method to calculate the total value of a hand of cards, with aces being worth 1 or 11 depending on the total value of the hand
+     * @return int total value 
+     */
+    public int getTotalValue() { 
         int value = 0;
         int aces = 0;
         for (Card card : hand) {
@@ -83,7 +90,7 @@ public class Hand {
     }
 
     // Override toString method
-    public String toString() {
+    public String toString() { //specification met
         String handString = "";
         for (Card card : hand) {
             handString += card.toString() + "\n";
@@ -91,7 +98,7 @@ public class Hand {
         return handString;
     }
 
-    public ArrayList<Card> getHand() {
+    public ArrayList<Card> getHand() { //not in specifications, but is useful additional method
         return hand;
     }
 

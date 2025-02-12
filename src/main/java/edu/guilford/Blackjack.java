@@ -1,48 +1,65 @@
 package edu.guilford;
 
+/***
+ * Class that represents a game of Blackjack, with methods to simulate player and dealer turns, and reset the game
+ */
 public class Blackjack {
     private Hand playerHand;
     private Hand dealerHand;
     private Deck deck;
 
-    public Blackjack() {
+    /***
+     * Constructor for Blackjack class that creates a new deck, calls reset method
+     * @see #reset(boolean)
+     */
+    public Blackjack() { //specification met
         reset(true);
     }
 
     
 
-    public Hand getPlayerHand() {
+    public Hand getPlayerHand() { //specification met
         return playerHand;
     }
 
 
-    public Hand getDealerHand() {
+    public Hand getDealerHand() { //specification met
         return dealerHand;
     }
 
 
-    public Deck getDeck() {
+    public Deck getDeck() { //specification met
         return deck;
     }
 
-
-    public void reset(boolean newDeck) {
+    /**
+     * Method to reset the game, creating a new shuffled deck 
+     * @param newDeck
+     */
+    public void reset(boolean newDeck) { //specification met
         if (newDeck) {
             deck = new Deck();
             deck.shuffle();
         }
     }
 
-    public void deal() {
-        playerHand = new Hand();
+    /**
+     * Method to deal two cards to the player and two cards to the dealer
+     * 
+     */
+    public void deal() { //specification met
         dealerHand = new Hand();
-        playerHand.addCard(deck.deal());
+        playerHand = new Hand();
+        playerHand.addCard(deck.deal()); 
         dealerHand.addCard(deck.deal());
         playerHand.addCard(deck.deal());
         dealerHand.addCard(deck.deal());
     }
-
-    public boolean playerTurn() {
+    /**
+     * Method to simulate player turn, keep pulling cards until total value is 16 or higher
+     * @return boolean true if player total value is less than or equal to 21, false otherwise
+     */
+    public boolean playerTurn() { //specification met
         while (playerHand.getTotalValue() < 16) {
             playerHand.addCard(deck.deal());
         }
@@ -50,7 +67,11 @@ public class Blackjack {
 
     }
 
-    public boolean dealerTurn() {
+    /**
+     * Method to simulate dealer turn, keep pulling cards until total value is 17 or higher
+     * @return boolean true if dealer total value is less than or equal to 21, false otherwise
+     */
+    public boolean dealerTurn() { //specification met
         while (dealerHand.getTotalValue() < 17) {
             dealerHand.addCard(deck.deal());
         }
@@ -58,7 +79,7 @@ public class Blackjack {
     }
 
     // Override toString
-    public String toString() {
+    public String toString() { //specification met
         String result = "Player's Hand:\n";
         for (int i = 0; i < playerHand.size(); i++) {
             result += playerHand.getCard(i) + "\n";

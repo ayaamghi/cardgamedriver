@@ -1,5 +1,8 @@
 package edu.guilford;
 
+/***
+ * Main driver class for the card games, Blackjack and Lamarckian Poker, simulates 10k games of blackjack and one lamarckian poker game
+ */
 public class CardGameDriver {
     public static void main(String[] args) {
         final int NGAMES = 10000;

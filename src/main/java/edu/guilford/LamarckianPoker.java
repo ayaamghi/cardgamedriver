@@ -3,32 +3,45 @@ package edu.guilford;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class LamarckianPoker {
-    private Hand player1Hand;
-    private Hand player2Hand;
-    private Hand pool;
-    private Deck discard;
-    private Deck deck;
-    private Random rand = new Random();
-    private int iTurn;
 
+/***
+ * Lamarckian Poker game, two player card game where aim is to build highest scoring hand. Contains methods to deal, make pool, and turn.
+ */
+public class LamarckianPoker {
+    private Hand player1Hand; 
+    private Hand player2Hand; //misleading, specifications state "player and dealer hands"
+    private Hand pool; 
+    private Deck discard; 
+    private Deck deck; 
+    private Random rand = new Random();
+    private int iTurn; //extra attribute which is unclear as to purpose and is never used except to set to 0 
+
+    /***
+     * Constructor for LamarckianPoker class that creates a new deck, calls reset method
+     * @see #reset(boolean)
+     */
     public LamarckianPoker() {
         reset(true);
     }
 
-    public Hand getPlayer1Hand() {
+    public Hand getPlayer1Hand() { //specification met
         return player1Hand;
     }
 
-    public Hand getPlayer2Hand() {
+    public Hand getPlayer2Hand() { //specification met (typo in specifications, says getPlayer1Hand twice)
         return player2Hand;
     }
-
-    public Hand getPool() {
+ 
+    public Hand getPool() { //specification technically not met-- says "pool" not "getPool"
         return pool;
     }
 
-    public void reset(boolean newDeck) {
+    /**
+     * Reset the game, creating a new shuffled deck and a new discard pile 
+     * @param newDeck
+     */
+    //should be turned into an abstract method in a superclass
+    public void reset(boolean newDeck) { //specification met
         if (newDeck) {
             deck = new Deck();
             discard = new Deck();
@@ -38,7 +51,12 @@ public class LamarckianPoker {
         iTurn = 0;
     }
 
-    public void deal() {
+    /***
+     * Deal four cards to both players
+     * 
+     */
+    //should be extracted to a superclass method with a param for hand # and hands
+    public void deal() { //specification met
         player1Hand = new Hand();
         player2Hand = new Hand();
         for (int iCard = 0; iCard < 4; iCard++) {
@@ -47,14 +65,22 @@ public class LamarckianPoker {
         }
     }
 
-    public void makePool() {
-        pool = new Hand();
+    /***
+     * Method to create a pool of four cards from the deck
+     * 
+     */
+    public void makePool() { //specification met
+        pool = new Hand(); 
         for (int iCard = 0; iCard < 4; iCard++) {
             pool.addCard(deck.deal());
         }
         // System.out.println("Deck size: " + deck.size());
     }
 
+    /***
+     * Method to simulate a turn in the game, where players take turns playing cards from their hand to the pool
+     * @return boolean true if both players have less than 7 cards, false otherwise
+     */
     public boolean turn() {
         if (player1Hand.size() < 7 || player2Hand.size() < 7) {
             makePool();

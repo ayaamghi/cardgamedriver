@@ -2,12 +2,12 @@ package edu.guilford;
 
 import java.util.Random;
 
-public class Card implements Comparable<Card>{
+public class Card implements Comparable<Card>{ //specification met
     // enum for the suits
     /***
      * Enum for suits Clubs, Diamonds, Hearts, Spades
      */
-    public enum Suit {
+    public enum Suit {  //specification met
         CLUBS, DIAMONDS, HEARTS, SPADES
     }
 
@@ -16,7 +16,7 @@ public class Card implements Comparable<Card>{
      * Enum for ranks Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten,
      * Jack, Queen, King
      */
-    public enum Rank {
+    public enum Rank {  //specification met
         ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN,
         KING
     }
@@ -26,12 +26,20 @@ public class Card implements Comparable<Card>{
     private Rank rank;
 
     // constructor
-    public Card(Suit suit, Rank rank) {
+    /***
+     * Constructor for Card class that produces specific card
+     * @param suit Suit of the card
+     * @param rank Rank of the card
+     */
+    public Card(Suit suit, Rank rank) {  //specification met
         this.suit = suit;
         this.rank = rank;
     }
 
-    public Card() {
+    /***
+     * Constructor for Card class that produces random card per the enum values
+     */
+    public Card() {  //specification met
         // random Card
         Random rand = new Random();
         int suit = rand.nextInt(Suit.values().length);
@@ -41,22 +49,22 @@ public class Card implements Comparable<Card>{
     }
 
     // getters
-    public Suit getSuit() {
+    public Suit getSuit() {  //specification met
         return suit;
     }
 
-    public Rank getRank() {
+    public Rank getRank() {  //specification met
         return rank;
     }
 
     // toString
 
-    public String toString() {
+    public String toString() {  //specification met
         return rank + " of " + suit;
     }
 
     @Override
-    public int compareTo(Card otherCard) {
+    public int compareTo(Card otherCard) {  //specification met
         // TODO Auto-generated method stub
         if (this.rank.ordinal() > otherCard.rank.ordinal()) {
             return 1;
@@ -64,7 +72,7 @@ public class Card implements Comparable<Card>{
         else if (this.rank.ordinal() < otherCard.rank.ordinal()) {
             return -1;
         }
-        else {
+        else { 
             if (this.suit.ordinal() > otherCard.suit.ordinal()) {
                 return 1;
             }
