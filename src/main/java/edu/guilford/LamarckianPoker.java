@@ -77,16 +77,25 @@ public class LamarckianPoker {
         // System.out.println("Deck size: " + deck.size());
     }
 
-    /***
-     * Method to simulate a turn in the game, where players take turns playing cards from their hand to the pool
-     * @return boolean true if both players have less than 7 cards, false otherwise
-     */
     public boolean turn() {
         if (player1Hand.size() < 7 || player2Hand.size() < 7) {
             makePool();
+            Card player1Card, player2Card; 
             // System.out.println("Turn " + iTurn + "\n" + pool);
-            Card player1Card = player1Hand.getCard(rand.nextInt(player1Hand.size()));
-            Card player2Card = player2Hand.getCard(rand.nextInt(player2Hand.size()));
+            //orignial code
+            // Card player1Card = player1Hand.getCard(rand.nextInt(player1Hand.size()));
+            // Card player2Card = player2Hand.getCard(rand.nextInt(player2Hand.size()));
+
+            try { 
+                 player1Card = player1Hand.getCard(rand.nextInt(player1Hand.size()));
+                 player2Card = player2Hand.getCard(rand.nextInt(player2Hand.size()));
+    
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println(player1Hand.size() > player2Hand.size() ? "Player 1 wins!" : "Player 2 wins!"); 
+                return false; 
+            }
+            
             Hand firstHand, secondHand;
             Card firstCard, secondCard;
             if (player1Card.getRank().ordinal() > player2Card.getRank().ordinal()) {

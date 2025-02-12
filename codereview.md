@@ -115,4 +115,26 @@ No user input, but for randomly selected cases, there are several points that th
 ## Other Code Review Items
 - Are there any other issues in the code worth mentioning that do not fit into the above categories?
 
-No errors that have not already been detailed. 
+The Pool function in Lamarkian always prints out null or nothing at all rather then the actual pool. 
+
+
+# Part Two  -- Tracking down a bug and proposing a fix
+
+The error in the Lamarckian is as follows
+
+`Exception in thread "main" java.lang.IllegalArgumentException: bound must be positive
+        at java.base/java.util.Random.nextInt(Random.java:322)
+        at edu.guilford.LamarckianPoker.turn(LamarckianPoker.java:88)
+        at edu.guilford.CardGameDriver.main(CardGameDriver.java:51)`
+
+The error refers to the line `Card player1Card = player1Hand.getCard(rand.nextInt(player1Hand.size()))`, 
+where it appears that when rand.nextInt() is called, occasionally the provided bound in player1Hand.size() is negative. We can see when adding a try-catch block, 
+
+`            catch (IllegalArgumentException e) {
+                System.out.println("ERROR: " + e.getMessage()); 
+                System.out.println("Attempted value was " + player1Hand.size()); 
+                return false; 
+            }
+`
+
+that we get `Attempted value was 0`, where attempted value refers to the size of player1Hand. This error only ocassionally appears because having 0 cards is a possible losing state of Lamarckian poker according to the linked site in the [README.md](https://boardgamegeek.com/blog/743/blogpost/17479/lamarckian-poker-a-surprising-diamond-in-the-rough). It is only one of the possible losing states however, so its not always triggered. We can fix the bug by checking first if the size of either players hands is zero, and if it is, exiting early and stating one of the players lost. 
