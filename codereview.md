@@ -75,7 +75,7 @@ The switch for Card values in Hand is equally likely for all values, in the comp
 
 - Does each `if-else` chain or `switch` statement account for **all possible cases**?
 
-Yes, as all 
+Yes. 
 - Can readability and robustness be improved by converting an `if-else` statement into a `switch`?
 
 There are no if-else statements that should be converted to switches. 
@@ -101,7 +101,7 @@ Yes, all return values are correct.
 
 - Do methods avoid unnecessary `print` statements and instead return values or strings?
 
-There are no methods that print in production, so yes. 
+Yes, all lines printed to the terminal come directly from the driver program and not as side-effects from any methods. 
 
 - Does each statement operate on the correct data type and structure?
 
@@ -137,4 +137,4 @@ where it appears that when rand.nextInt() is called, occasionally the provided b
             }
 `
 
-that we get `Attempted value was 0`, where attempted value refers to the size of player1Hand. This error only ocassionally appears because having 0 cards is a possible losing state of Lamarckian poker according to the linked site in the [README.md](https://boardgamegeek.com/blog/743/blogpost/17479/lamarckian-poker-a-surprising-diamond-in-the-rough). It is only one of the possible losing states however, so its not always triggered. We can fix the bug by checking first if the size of either players hands is zero, and if it is, exiting early and stating one of the players lost. 
+that we get `Attempted value was 0`, where attempted value refers to the size of player1Hand. This error only ocassionally appears because having 0 cards is a possible losing state of Lamarckian poker according to the linked site in the [README.md](https://boardgamegeek.com/blog/743/blogpost/17479/lamarckian-poker-a-surprising-diamond-in-the-rough). It is only one of the possible losing states however, so its not always triggered. We can fix the bug by catching the exception and checking which player had zero by checking which one had more and so can't have had zero--since one player has to win each comparison only one can be zero. 
