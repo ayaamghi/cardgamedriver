@@ -44,11 +44,11 @@ public class CardGameDriver {
 
         boolean gameDone = false;
         while (!gameDone) {
-        //    System.out.println(lmpGame);
+            // System.out.println(lmpGame);
             gameDone = !lmpGame.turn();
         }
-  
-        System.out.println("Final Lamarckian hands\n" + lmpGame);   
+
+        System.out.println("Final Lamarckian hands\n" + lmpGame);
 
     }
 }

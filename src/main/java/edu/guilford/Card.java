@@ -4,11 +4,18 @@ import java.util.Random;
 
 public class Card implements Comparable<Card>{
     // enum for the suits
+    /***
+     * Enum for suits Clubs, Diamonds, Hearts, Spades
+     */
     public enum Suit {
         CLUBS, DIAMONDS, HEARTS, SPADES
     }
 
     // enum for the ranks
+    /***
+     * Enum for ranks Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten,
+     * Jack, Queen, King
+     */
     public enum Rank {
         ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN,
         KING
